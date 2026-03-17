@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { customTechSvgs } from "./custom-svgs";
 
 // =============================================================================
 // Tech stack icon component with branded SVG icons
@@ -104,10 +105,16 @@ export function TechIcon({ name, size = "md", showLabel = true, className }: Tec
   return (
     <div className={cn("inline-flex items-center gap-2", className)}>
       <div
-        className="flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 transition-transform hover:scale-110"
+        className="flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 transition-transform hover:scale-110 [&_svg]:dark:opacity-90"
         style={{ width: s.container, height: s.container }}
       >
-        {tech ? (
+        {customTechSvgs[name] ? (
+          <div
+            className="flex items-center justify-center [&_svg]:w-full [&_svg]:h-full overflow-hidden"
+            style={{ width: s.icon, height: s.icon, maxWidth: s.icon, maxHeight: s.icon }}
+            dangerouslySetInnerHTML={{ __html: customTechSvgs[name] }}
+          />
+        ) : tech ? (
           <svg
             viewBox={tech.viewBox || "0 0 24 24"}
             fill={tech.color}
@@ -174,9 +181,15 @@ export function TechStackPills({
         return (
           <span
             key={tech}
-            className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
+            className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700 [&_svg]:dark:opacity-90"
           >
-            {t ? (
+            {customTechSvgs[tech] ? (
+              <div
+                className="flex items-center justify-center [&_svg]:w-full [&_svg]:h-full overflow-hidden"
+                style={{ width: 14, height: 14, maxWidth: 14, maxHeight: 14 }}
+                dangerouslySetInnerHTML={{ __html: customTechSvgs[tech] }}
+              />
+            ) : t ? (
               <svg viewBox={t.viewBox || "0 0 24 24"} fill={t.color} width={14} height={14} className="dark:opacity-90">
                 <path d={t.path} />
               </svg>
@@ -219,8 +232,14 @@ export function TechStackMarquee({
               key={`${tech}-${i}`}
               className="flex items-center gap-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 px-4 py-2.5 shadow-sm transition-shadow hover:shadow-md"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0">
-                {t ? (
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 [&_svg]:dark:opacity-90">
+                {customTechSvgs[tech] ? (
+                  <div
+                    className="flex items-center justify-center [&_svg]:w-full [&_svg]:h-full overflow-hidden"
+                    style={{ width: 18, height: 18, maxWidth: 18, maxHeight: 18 }}
+                    dangerouslySetInnerHTML={{ __html: customTechSvgs[tech] }}
+                  />
+                ) : t ? (
                   <svg
                     viewBox={t.viewBox || "0 0 24 24"}
                     fill={t.color}

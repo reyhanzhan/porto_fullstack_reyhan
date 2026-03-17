@@ -33,8 +33,7 @@ export default function LoginPage() {
       setError("Invalid email or password");
       setLoading(false);
     } else {
-      router.push("/admin");
-      router.refresh();
+      window.location.href = "/admin";
     }
   };
 

@@ -26,8 +26,6 @@ export default function HomePage() {
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),transparent)]" />
-        {/* Subtle grid */}
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-30 dark:opacity-10" />
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl text-center animate-fade-in-up">
             <Badge variant="secondary" className="mb-6 gap-1.5">
@@ -37,7 +35,7 @@ export default function HomePage() {
 
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               I build{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-purple-400">
+              <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 bg-clip-text text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-purple-400">
                 AI-powered business systems
               </span>{" "}
               for B2B
@@ -65,7 +63,7 @@ export default function HomePage() {
             </div>
 
             {/* Social proof / stats */}
-            <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-center">
+            <div className="mt-12 flex flex-row flex-wrap items-center justify-center gap-x-8 gap-y-4 text-center sm:mt-16 sm:gap-8">
               {[
                 { value: "5+", label: "Production Systems" },
                 { value: "94%", label: "AI Accuracy" },
@@ -98,7 +96,7 @@ export default function HomePage() {
             {capabilities.map((cap) => (
               <Card
                 key={cap.title}
-                className="group relative overflow-hidden transition-all hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-1 duration-300"
+                className="group relative overflow-hidden transition-all bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-1 duration-300"
               >
                 <CardContent className="p-6">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 group-hover:bg-gradient-to-br group-hover:from-zinc-800 group-hover:to-zinc-950 group-hover:text-white dark:group-hover:from-white dark:group-hover:to-zinc-200 dark:group-hover:text-zinc-900 transition-all duration-300">
@@ -224,10 +222,12 @@ const techStack = [
   "Tailwind CSS",
   "Node.js",
   "Python",
+  "FastAPI",
+  "scikit-learn",
+  "PyTorch",
   "MySQL",
   "Prisma",
   "Docker",
   "AWS",
-  "OpenAI",
   "Redis",
 ];
