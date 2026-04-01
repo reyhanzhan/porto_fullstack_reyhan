@@ -3,12 +3,12 @@ import { Terminal, Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+    <footer className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-zinc-900 dark:text-white">
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center gap-2 font-bold text-lg">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-white">
                 <Terminal className="h-4 w-4 text-white dark:text-zinc-900" />
               </div>

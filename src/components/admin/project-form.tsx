@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { createProject, updateProject } from "@/app/admin/actions";
 import { Loader2 } from "lucide-react";
-import { useTransition } from "react";
+import { type FormEvent, useState, useTransition } from "react";
 
 interface Project {
   id: string;
@@ -30,20 +30,28 @@ interface Props {
 
 export function ProjectForm({ project }: Props) {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState("");
   const isEditing = !!project;
 
-  const handleSubmit = (formData: FormData) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+
     startTransition(async () => {
+      setError("");
+
       if (isEditing) {
-        await updateProject(project.id, formData);
+        const result = await updateProject(project.id, formData);
+        if (result?.error) setError(result.error);
       } else {
-        await createProject(formData);
+        const result = await createProject(formData);
+        if (result?.error) setError(result.error);
       }
     });
   };
 
   return (
-    <form action={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main content */}
         <div className="lg:col-span-2 space-y-6">
@@ -57,6 +65,7 @@ export function ProjectForm({ project }: Props) {
                 <Input
                   name="title"
                   required
+                  minLength={3}
                   defaultValue={project?.title}
                   placeholder="AI-Powered Invoice Processing System"
                 />
@@ -66,6 +75,8 @@ export function ProjectForm({ project }: Props) {
                 <Input
                   name="slug"
                   required
+                  minLength={3}
+                  pattern="^[a-z0-9-]+$"
                   defaultValue={project?.slug}
                   placeholder="ai-invoice-processing"
                 />
@@ -93,6 +104,7 @@ export function ProjectForm({ project }: Props) {
                 <Textarea
                   name="description"
                   required
+                  minLength={20}
                   rows={4}
                   defaultValue={project?.description}
                   placeholder="Describe the business problem this project solves..."
@@ -105,6 +117,7 @@ export function ProjectForm({ project }: Props) {
                 <Textarea
                   name="solution"
                   required
+                  minLength={20}
                   rows={4}
                   defaultValue={project?.solution}
                   placeholder="Describe the technical approach and architecture..."
@@ -216,6 +229,7 @@ export function ProjectForm({ project }: Props) {
               "Create Project"
             )}
           </Button>
+          {error ? <p className="text-sm text-red-600">{error}</p> : null}
         </div>
       </div>
     </form>

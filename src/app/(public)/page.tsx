@@ -35,7 +35,7 @@ export default function HomePage() {
 
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               I build{" "}
-              <span className="bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 bg-clip-text text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-purple-400">
+              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-purple-400">
                 AI-powered business systems
               </span>{" "}
               for B2B
@@ -63,7 +63,7 @@ export default function HomePage() {
             </div>
 
             {/* Social proof / stats */}
-            <div className="mt-12 flex flex-row flex-wrap items-center justify-center gap-x-8 gap-y-4 text-center sm:mt-16 sm:gap-8">
+            <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-center">
               {[
                 { value: "5+", label: "Production Systems" },
                 { value: "94%", label: "AI Accuracy" },
@@ -96,7 +96,7 @@ export default function HomePage() {
             {capabilities.map((cap) => (
               <Card
                 key={cap.title}
-                className="group relative overflow-hidden transition-all bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-1 duration-300"
+                className="group relative overflow-hidden transition-all hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-1 duration-300"
               >
                 <CardContent className="p-6">
                   <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 group-hover:bg-gradient-to-br group-hover:from-zinc-800 group-hover:to-zinc-950 group-hover:text-white dark:group-hover:from-white dark:group-hover:to-zinc-200 dark:group-hover:text-zinc-900 transition-all duration-300">
@@ -222,12 +222,10 @@ const techStack = [
   "Tailwind CSS",
   "Node.js",
   "Python",
-  "FastAPI",
-  "scikit-learn",
-  "PyTorch",
   "MySQL",
   "Prisma",
   "Docker",
   "AWS",
+  "OpenAI",
   "Redis",
 ];

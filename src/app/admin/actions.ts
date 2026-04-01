@@ -12,11 +12,11 @@ export async function createProject(formData: FormData) {
   if (!session || session.user.role !== "ADMIN") throw new Error("Unauthorized");
 
   const raw = {
-    title: formData.get("title") as string,
-    slug: formData.get("slug") as string,
+    title: (formData.get("title") as string)?.trim(),
+    slug: (formData.get("slug") as string)?.trim(),
     subtitle: formData.get("subtitle") as string,
-    description: formData.get("description") as string,
-    solution: formData.get("solution") as string,
+    description: (formData.get("description") as string)?.trim(),
+    solution: (formData.get("solution") as string)?.trim(),
     impact: formData.get("impact") as string,
     architecture: formData.get("architecture") as string,
     demoUrl: formData.get("demoUrl") as string,
@@ -26,10 +26,15 @@ export async function createProject(formData: FormData) {
     sortOrder: parseInt(formData.get("sortOrder") as string) || 0,
   };
 
-  const validated = projectSchema.parse(raw);
+  const validated = projectSchema.safeParse(raw);
+  if (!validated.success) {
+    return {
+      error: validated.error.issues.map((issue) => issue.message).join(" | "),
+    };
+  }
 
   const project = await db.project.create({
-    data: validated,
+    data: validated.data,
   });
 
   await createAuditLog({
@@ -49,11 +54,11 @@ export async function updateProject(id: string, formData: FormData) {
   if (!session || session.user.role !== "ADMIN") throw new Error("Unauthorized");
 
   const raw = {
-    title: formData.get("title") as string,
-    slug: formData.get("slug") as string,
+    title: (formData.get("title") as string)?.trim(),
+    slug: (formData.get("slug") as string)?.trim(),
     subtitle: formData.get("subtitle") as string,
-    description: formData.get("description") as string,
-    solution: formData.get("solution") as string,
+    description: (formData.get("description") as string)?.trim(),
+    solution: (formData.get("solution") as string)?.trim(),
     impact: formData.get("impact") as string,
     architecture: formData.get("architecture") as string,
     demoUrl: formData.get("demoUrl") as string,
@@ -63,23 +68,28 @@ export async function updateProject(id: string, formData: FormData) {
     sortOrder: parseInt(formData.get("sortOrder") as string) || 0,
   };
 
-  const validated = projectSchema.parse(raw);
+  const validated = projectSchema.safeParse(raw);
+  if (!validated.success) {
+    return {
+      error: validated.error.issues.map((issue) => issue.message).join(" | "),
+    };
+  }
 
   await db.project.update({
     where: { id },
-    data: validated,
+    data: validated.data,
   });
 
   await createAuditLog({
     action: "UPDATE",
     entity: "Project",
     entityId: id,
-    metadata: { title: validated.title },
+    metadata: { title: validated.data.title },
   });
 
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
-  revalidatePath(`/projects/${validated.slug}`);
+  revalidatePath(`/projects/${validated.data.slug}`);
   redirect("/admin/projects");
 }
 
