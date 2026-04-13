@@ -25,7 +25,7 @@ export default function HomePage() {
     <>
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),transparent)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(99,102,241,0.15),transparent)] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(129,140,248,0.1),transparent)]" />
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-3xl text-center animate-fade-in-up">
             <Badge variant="secondary" className="mb-6 gap-1.5">
@@ -35,13 +35,13 @@ export default function HomePage() {
 
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
               I build{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-violet-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-purple-400">
+              <span className="bg-linear-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400">
                 AI-powered business systems
               </span>{" "}
               for B2B
             </h1>
 
-            <p className="mt-6 text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+            <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
               Enterprise-grade full stack solutions that automate workflows,
               reduce operational costs, and turn unstructured data into
               actionable business intelligence. Not templates &mdash; real systems.
@@ -49,7 +49,7 @@ export default function HomePage() {
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/projects">
-                <Button size="lg" className="gap-2 shadow-lg shadow-zinc-900/10 dark:shadow-zinc-100/5">
+                <Button size="lg" className="gap-2">
                   Explore Projects
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -71,7 +71,7 @@ export default function HomePage() {
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="text-2xl font-bold tracking-tight">{stat.value}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{stat.label}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -80,13 +80,13 @@ export default function HomePage() {
       </section>
 
       {/* WHAT I BUILD */}
-      <section className="border-t border-zinc-200 dark:border-zinc-800">
+      <section className="border-t border-indigo-100/60 dark:border-indigo-500/10">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Systems that solve real problems
             </h2>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400">
+            <p className="mt-4 text-slate-600 dark:text-slate-400">
               Every project is built to address a specific business pain point
               &mdash; with measurable ROI.
             </p>
@@ -96,20 +96,20 @@ export default function HomePage() {
             {capabilities.map((cap) => (
               <Card
                 key={cap.title}
-                className="group relative overflow-hidden transition-all hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-1 duration-300"
+                className="group relative overflow-hidden transition-all hover:shadow-lg hover:shadow-indigo-500/8 hover:border-indigo-200/80 dark:hover:border-indigo-500/20 hover:-translate-y-1 duration-300"
               >
                 <CardContent className="p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800 group-hover:bg-gradient-to-br group-hover:from-zinc-800 group-hover:to-zinc-950 group-hover:text-white dark:group-hover:from-white dark:group-hover:to-zinc-200 dark:group-hover:text-zinc-900 transition-all duration-300">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400 group-hover:bg-linear-to-br group-hover:from-indigo-600 group-hover:to-violet-600 group-hover:text-white dark:group-hover:from-indigo-500 dark:group-hover:to-violet-500 transition-all duration-300">
                     <cap.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-base font-semibold">{cap.title}</h3>
-                  <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                     {cap.description}
                   </p>
                   {/* Key features */}
                   <div className="mt-4 space-y-1.5">
                     {cap.features.map((f) => (
-                      <div key={f} className="flex items-center gap-2 text-xs text-zinc-500">
+                      <div key={f} className="flex items-center gap-2 text-xs text-slate-500">
                         <CheckCircle className="h-3 w-3 text-emerald-500 shrink-0" />
                         {f}
                       </div>
@@ -123,10 +123,10 @@ export default function HomePage() {
       </section>
 
       {/* TECH STACK BAR — Now with real icons */}
-      <section className="border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/50">
+      <section className="border-t border-indigo-100/60 bg-linear-to-b from-indigo-50/50 to-transparent dark:border-indigo-500/10 dark:from-indigo-500/3 dark:to-transparent">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-sm font-medium uppercase tracking-wider text-zinc-500 mb-8">
+            <p className="text-sm font-medium uppercase tracking-wider text-slate-500 mb-8">
               Production Tech Stack
             </p>
             <TechStackMarquee techs={techStack} />
@@ -135,10 +135,10 @@ export default function HomePage() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="border-t border-zinc-200 dark:border-zinc-800">
+      <section className="border-t border-indigo-100/60 dark:border-indigo-500/10">
         <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="relative mx-auto max-w-3xl text-center">
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(120,119,198,0.08),transparent)]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.08),transparent)] dark:bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(129,140,248,0.06),transparent)]" />
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               See the systems in action
             </h2>
@@ -148,7 +148,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/demos">
-                <Button size="lg" className="gap-2 shadow-lg shadow-zinc-900/10">
+                <Button size="lg" className="gap-2">
                   Launch Demo Environment
                   <ArrowRight className="h-4 w-4" />
                 </Button>

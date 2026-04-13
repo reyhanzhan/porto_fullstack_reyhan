@@ -104,7 +104,7 @@ export function TechIcon({ name, size = "md", showLabel = true, className }: Tec
   return (
     <div className={cn("inline-flex items-center gap-2", className)}>
       <div
-        className="flex items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0 transition-transform hover:scale-110"
+        className="flex items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-500/10 shrink-0 transition-transform hover:scale-110"
         style={{ width: s.container, height: s.container }}
       >
         {tech ? (
@@ -130,7 +130,7 @@ export function TechIcon({ name, size = "md", showLabel = true, className }: Tec
         )}
       </div>
       {showLabel && (
-        <span className={cn("font-medium text-zinc-600 dark:text-zinc-400", s.text)}>
+        <span className={cn("font-medium text-slate-600 dark:text-slate-400", s.text)}>
           {name}
         </span>
       )}
@@ -174,7 +174,7 @@ export function TechStackPills({
         return (
           <span
             key={tech}
-            className="inline-flex items-center gap-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
+            className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 transition-colors hover:bg-indigo-100 dark:hover:bg-indigo-500/20"
           >
             {t ? (
               <svg viewBox={t.viewBox || "0 0 24 24"} fill={t.color} width={14} height={14} className="dark:opacity-90">
@@ -208,8 +208,8 @@ export function TechStackMarquee({
   return (
     <div className={cn("relative overflow-hidden", className)}>
       {/* Fade edges */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-gradient-to-r from-zinc-50 to-transparent dark:from-zinc-900/50" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-gradient-to-l from-zinc-50 to-transparent dark:from-zinc-900/50" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-16 bg-linear-to-r from-[#f8f9fc] to-transparent dark:from-[#0a0a1a]" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-16 bg-linear-to-l from-[#f8f9fc] to-transparent dark:from-[#0a0a1a]" />
 
       <div className="animate-marquee flex w-max gap-8 py-2">
         {items.map((tech, i) => {
@@ -217,9 +217,9 @@ export function TechStackMarquee({
           return (
             <div
               key={`${tech}-${i}`}
-              className="flex items-center gap-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 px-4 py-2.5 shadow-sm transition-shadow hover:shadow-md"
+              className="flex items-center gap-2.5 rounded-xl border border-indigo-100/60 dark:border-indigo-500/10 bg-white/80 dark:bg-[#111128]/80 px-4 py-2.5 shadow-sm shadow-indigo-500/3 transition-shadow hover:shadow-md hover:shadow-indigo-500/8"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 dark:bg-zinc-800 flex-shrink-0">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 dark:bg-indigo-500/10 shrink-0">
                 {t ? (
                   <svg
                     viewBox={t.viewBox || "0 0 24 24"}
@@ -239,7 +239,7 @@ export function TechStackMarquee({
                   </span>
                 )}
               </div>
-              <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 whitespace-nowrap">
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">
                 {tech}
               </span>
             </div>

@@ -7,11 +7,11 @@ interface BadgeProps {
 }
 
 const variantStyles = {
-  default: "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900",
-  secondary: "bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200",
-  success: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
-  warning: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
-  destructive: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+  default: "bg-linear-to-r from-indigo-600 to-violet-600 text-white dark:from-indigo-500 dark:to-violet-500",
+  secondary: "bg-indigo-50 text-indigo-700 border border-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-300 dark:border-indigo-500/20",
+  success: "bg-emerald-50 text-emerald-700 border border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20",
+  warning: "bg-amber-50 text-amber-700 border border-amber-100 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20",
+  destructive: "bg-red-50 text-red-700 border border-red-100 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20",
 };
 
 export function Badge({ children, variant = "default", className }: BadgeProps) {

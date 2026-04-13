@@ -28,7 +28,7 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex items-center rounded-lg border border-zinc-200 bg-zinc-100 p-0.5 dark:border-zinc-700 dark:bg-zinc-800",
+        "flex items-center rounded-lg border border-indigo-100/60 bg-indigo-50/50 p-0.5 dark:border-indigo-500/20 dark:bg-indigo-500/10",
         className
       )}
     >
@@ -39,8 +39,8 @@ export function ThemeToggle({ className }: { className?: string }) {
           className={cn(
             "flex h-7 w-7 items-center justify-center rounded-md transition-all",
             theme === opt.value
-              ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
-              : "text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+              ? "bg-white text-indigo-600 shadow-sm dark:bg-indigo-500/20 dark:text-indigo-300"
+              : "text-slate-400 hover:text-indigo-500 dark:text-slate-500 dark:hover:text-indigo-400"
           )}
           title={opt.label}
           aria-label={`Switch to ${opt.label} mode`}
