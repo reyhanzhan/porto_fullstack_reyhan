@@ -17,6 +17,7 @@ export async function createAuditLog(params: {
       action: params.action,
       entity: params.entity,
       entityId: params.entityId,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       metadata: (params.metadata as any) ?? undefined,
     },
   });

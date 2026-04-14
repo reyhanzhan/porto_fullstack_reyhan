@@ -22,9 +22,9 @@ declare module "next-auth" {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(db) as any,
   providers: [
     Credentials({
