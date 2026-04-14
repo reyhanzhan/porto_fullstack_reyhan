@@ -1,4 +1,6 @@
 import { db } from "@/lib/db";
+
+export const dynamic = 'force-dynamic';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";

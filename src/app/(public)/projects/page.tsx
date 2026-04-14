@@ -1,5 +1,7 @@
 import { db } from "@/lib/db";
 import Link from "next/link";
+
+export const dynamic = 'force-dynamic';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowRight, ExternalLink, Layers } from "lucide-react";
