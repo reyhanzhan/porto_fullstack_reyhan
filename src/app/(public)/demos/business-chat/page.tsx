@@ -20,7 +20,7 @@ interface Message {
 const RESPONSES: Record<string, { content: string; data?: Record<string, unknown> }> = {
   revenue: {
     content:
-      "Q3 2025 total revenue was **$4.2M**, up 23% from Q2. The top-performing segment was Enterprise SaaS at $2.8M, followed by SMB at $1.1M and Professional Services at $0.3M.",
+      "Total pendapatan Q3 2025 adalah **$4.2M**, naik 23% dibanding Q2. Segmen dengan performa terbaik adalah Enterprise SaaS sebesar $2.8M, diikuti SMB sebesar $1.1M dan Professional Services sebesar $0.3M.",
     data: {
       q3Revenue: "$4.2M",
       growth: "+23%",
@@ -29,7 +29,7 @@ const RESPONSES: Record<string, { content: string; data?: Record<string, unknown
   },
   customers: {
     content:
-      "Top 5 customers by lifetime value:\n1. **TechCorp Global** — $892K (36 months)\n2. **DataFlow Inc** — $654K (24 months)\n3. **CloudScale Systems** — $523K (18 months)\n4. **Apex Manufacturing** — $498K (30 months)\n5. **NovaPay Solutions** — $412K (12 months)",
+      "5 pelanggan teratas berdasarkan lifetime value:\n1. **TechCorp Global** — $892K (36 bulan)\n2. **DataFlow Inc** — $654K (24 bulan)\n3. **CloudScale Systems** — $523K (18 bulan)\n4. **Apex Manufacturing** — $498K (30 bulan)\n5. **NovaPay Solutions** — $412K (12 bulan)",
     data: {
       topCustomers: [
         { name: "TechCorp Global", ltv: 892000 },
@@ -40,24 +40,24 @@ const RESPONSES: Record<string, { content: string; data?: Record<string, unknown
   },
   churn: {
     content:
-      "Current monthly churn rate: **2.1%**. That's down from 3.4% last quarter. Primary churn drivers: 1) Product fit gaps (42%), 2) Budget constraints (31%), 3) Competitor switch (27%). Recommended action: improve onboarding for mid-market accounts.",
+      "Churn rate bulanan saat ini: **2.1%**. Turun dari 3.4% pada kuartal sebelumnya. Pendorong churn utama: 1) ketidaksesuaian product fit (42%), 2) keterbatasan anggaran (31%), 3) pindah ke kompetitor (27%). Rekomendasi: tingkatkan onboarding untuk akun mid-market.",
   },
   pipeline: {
     content:
-      "Sales pipeline summary:\n- **Discovery**: 23 deals ($1.8M)\n- **Demo Completed**: 15 deals ($2.1M)\n- **Proposal Sent**: 8 deals ($1.4M)\n- **Negotiation**: 4 deals ($890K)\n- **Closed Won (this month)**: 6 deals ($720K)\n\nWeighted pipeline value: **$3.2M**",
+      "Ringkasan sales pipeline:\n- **Discovery**: 23 deal ($1.8M)\n- **Demo Selesai**: 15 deal ($2.1M)\n- **Proposal Terkirim**: 8 deal ($1.4M)\n- **Negosiasi**: 4 deal ($890K)\n- **Closed Won (bulan ini)**: 6 deal ($720K)\n\nNilai pipeline tertimbang: **$3.2M**",
   },
   default: {
     content:
-      "I can help with business data queries like:\n- \"What were Q3 sales?\"\n- \"Show top customers by revenue\"\n- \"What's our churn rate?\"\n- \"Pipeline summary\"\n\nTry asking one of these questions!",
+      "Saya bisa membantu menjawab pertanyaan data bisnis seperti:\n- \"Berapa penjualan Q3?\"\n- \"Tampilkan pelanggan teratas berdasarkan pendapatan\"\n- \"Berapa churn rate kita?\"\n- \"Ringkasan pipeline\"\n\nCoba ajukan salah satu pertanyaan tersebut.",
   },
 };
 
 function getResponse(input: string): { content: string; data?: Record<string, unknown> } {
   const lower = input.toLowerCase();
-  if (lower.includes("revenue") || lower.includes("sales") || lower.includes("q3")) return RESPONSES.revenue;
-  if (lower.includes("customer") || lower.includes("top") || lower.includes("ltv")) return RESPONSES.customers;
-  if (lower.includes("churn") || lower.includes("retention")) return RESPONSES.churn;
-  if (lower.includes("pipeline") || lower.includes("deal") || lower.includes("forecast")) return RESPONSES.pipeline;
+  if (lower.includes("revenue") || lower.includes("sales") || lower.includes("penjualan") || lower.includes("pendapatan") || lower.includes("q3")) return RESPONSES.revenue;
+  if (lower.includes("customer") || lower.includes("top") || lower.includes("ltv") || lower.includes("pelanggan") || lower.includes("teratas")) return RESPONSES.customers;
+  if (lower.includes("churn") || lower.includes("retention") || lower.includes("retensi")) return RESPONSES.churn;
+  if (lower.includes("pipeline") || lower.includes("deal") || lower.includes("forecast") || lower.includes("ringkasan")) return RESPONSES.pipeline;
   return RESPONSES.default;
 }
 
@@ -67,7 +67,7 @@ export default function BusinessChatDemo() {
       id: "welcome",
       role: "assistant",
       content:
-        "Welcome to the Business Intelligence Chat. I have access to simulated company data including sales, customers, pipeline, and retention metrics. Ask me anything about the business.",
+        "Selamat datang di Chat Intelijen Bisnis. Saya memiliki akses ke data perusahaan simulasi yang mencakup penjualan, pelanggan, pipeline, dan metrik retensi. Silakan tanyakan apa pun terkait bisnis.",
       timestamp: new Date(),
     },
   ]);
@@ -116,15 +116,15 @@ export default function BusinessChatDemo() {
         className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        All Demos
+        Semua Demo
       </Link>
 
       <div className="mb-8">
-        <Badge variant="success" className="mb-3">Live Demo</Badge>
-        <h1 className="text-3xl font-bold tracking-tight">Business Data Chat</h1>
+        <Badge variant="success" className="mb-3">Demo Langsung</Badge>
+        <h1 className="text-3xl font-bold tracking-tight">Chat Data Bisnis</h1>
         <p className="mt-2 text-zinc-600 dark:text-zinc-400 max-w-2xl">
-          Natural language interface to company data. Ask questions about sales, customers,
-          churn, or pipeline — no SQL required.
+          Antarmuka bahasa alami untuk data perusahaan. Ajukan pertanyaan tentang penjualan, pelanggan,
+          churn, atau pipeline — tanpa perlu SQL.
         </p>
       </div>
 
@@ -132,7 +132,7 @@ export default function BusinessChatDemo() {
         <CardHeader className="border-b border-zinc-200 dark:border-zinc-800 py-3">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <CardTitle className="text-sm">BI Assistant — Connected to demo dataset</CardTitle>
+            <CardTitle className="text-sm">Asisten BI — Terhubung ke dataset demo</CardTitle>
           </div>
         </CardHeader>
 
@@ -159,7 +159,7 @@ export default function BusinessChatDemo() {
                 {msg.data && (
                   <details className="mt-2">
                     <summary className="text-xs opacity-60 cursor-pointer hover:opacity-100">
-                      View raw data
+                      Lihat data mentah
                     </summary>
                     <pre className="mt-1 text-[10px] opacity-60 overflow-x-auto">
                       {JSON.stringify(msg.data, null, 2)}
@@ -193,7 +193,7 @@ export default function BusinessChatDemo() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              placeholder="Ask about sales, customers, pipeline..."
+              placeholder="Tanyakan tentang penjualan, pelanggan, pipeline..."
               disabled={isTyping}
               className="flex-1"
             />
@@ -202,7 +202,7 @@ export default function BusinessChatDemo() {
             </Button>
           </div>
           <div className="mt-2 flex flex-wrap gap-1.5">
-            {["What were Q3 sales?", "Top customers", "Churn rate", "Pipeline summary"].map(
+            {["Berapa penjualan Q3?", "Pelanggan teratas", "Churn rate", "Ringkasan pipeline"].map(
               (q) => (
                 <button
                   key={q}

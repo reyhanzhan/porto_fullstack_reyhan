@@ -24,8 +24,8 @@ import {
 // Simulated sales data
 function generateSalesData() {
   const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+    "Jul", "Agu", "Sep", "Okt", "Nov", "Des",
   ];
 
   return months.map((month, i) => {
@@ -73,15 +73,15 @@ export default function SalesForecastDemo() {
         className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        All Demos
+        Semua Demo
       </Link>
 
       <div className="mb-8">
-        <Badge variant="success" className="mb-3">Live Demo</Badge>
-        <h1 className="text-3xl font-bold tracking-tight">Sales Forecasting Dashboard</h1>
+        <Badge variant="success" className="mb-3">Demo Langsung</Badge>
+        <h1 className="text-3xl font-bold tracking-tight">Dashboard Peramalan Penjualan</h1>
         <p className="mt-2 text-zinc-600 dark:text-zinc-400 max-w-2xl">
-          Interactive sales analytics with trend analysis and predictive forecasting.
-          Data represents a simulated B2B SaaS company.
+          Analitik penjualan interaktif dengan analisis tren dan peramalan prediktif.
+          Data merepresentasikan perusahaan B2B SaaS simulasi.
         </p>
       </div>
 
@@ -89,19 +89,19 @@ export default function SalesForecastDemo() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
           {
-            label: "Annual Revenue",
+            label: "Pendapatan Tahunan",
             value: `$${(totalRevenue / 1e6).toFixed(1)}M`,
             change: `+${avgGrowth}%`,
             up: true,
           },
-          { label: "Total Deals", value: totalDeals.toString(), change: "+18%", up: true },
+          { label: "Total Deal", value: totalDeals.toString(), change: "+18%", up: true },
           {
-            label: "Avg Deal Size",
+            label: "Rata-rata Nilai Deal",
             value: `$${Math.round(totalRevenue / totalDeals).toLocaleString()}`,
             change: "+8%",
             up: true,
           },
-          { label: "Win Rate", value: "34%", change: "-2%", up: false },
+          { label: "Tingkat Menang", value: "34%", change: "-2%", up: false },
         ].map((kpi) => (
           <Card key={kpi.label}>
             <CardContent className="p-4">
@@ -136,7 +136,7 @@ export default function SalesForecastDemo() {
             onClick={() => setView(v)}
             className="capitalize"
           >
-            {v}
+            {v === "monthly" ? "bulanan" : v === "quarterly" ? "kuartalan" : "segmen"}
           </Button>
         ))}
       </div>
@@ -145,9 +145,9 @@ export default function SalesForecastDemo() {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            {view === "monthly" && "Monthly Revenue vs Target (with Forecast)"}
-            {view === "quarterly" && "Quarterly Revenue & Deal Volume"}
-            {view === "segments" && "Revenue by Segment"}
+            {view === "monthly" && "Pendapatan Bulanan vs Target (dengan Proyeksi)"}
+            {view === "quarterly" && "Pendapatan Kuartalan & Volume Deal"}
+            {view === "segments" && "Pendapatan per Segmen"}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -176,7 +176,7 @@ export default function SalesForecastDemo() {
                     fill="#18181b"
                     fillOpacity={0.1}
                     strokeWidth={2}
-                    name="Actual Revenue"
+                    name="Pendapatan Aktual"
                     connectNulls={false}
                   />
                   <Area
@@ -187,7 +187,7 @@ export default function SalesForecastDemo() {
                     fillOpacity={0.05}
                     strokeWidth={2}
                     strokeDasharray="6 3"
-                    name="Forecast"
+                    name="Proyeksi"
                     connectNulls={false}
                   />
                   <Line
@@ -208,7 +208,7 @@ export default function SalesForecastDemo() {
                   <Tooltip
                     formatter={(value: number, name: string) => [
                       name === "revenue" ? `$${value.toLocaleString()}` : value,
-                      name === "revenue" ? "Revenue" : "Deals",
+                      name === "revenue" ? "Pendapatan" : "Deal",
                     ]}
                     contentStyle={{
                       backgroundColor: "#18181b",
@@ -219,7 +219,7 @@ export default function SalesForecastDemo() {
                     }}
                   />
                   <Legend />
-                  <Bar dataKey="revenue" fill="#18181b" radius={[4, 4, 0, 0]} name="Revenue" />
+                  <Bar dataKey="revenue" fill="#18181b" radius={[4, 4, 0, 0]} name="Pendapatan" />
                 </BarChart>
               ) : (
                 <AreaChart data={salesData}>
@@ -262,7 +262,7 @@ export default function SalesForecastDemo() {
                     stroke="#a1a1aa"
                     fill="#a1a1aa"
                     fillOpacity={0.3}
-                    name="Services"
+                    name="Layanan"
                   />
                 </AreaChart>
               )}

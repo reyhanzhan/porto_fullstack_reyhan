@@ -37,12 +37,12 @@ export default function ContactPage() {
 
       if (!res.ok) {
         const err = await res.json();
-        throw new Error(err.error || "Failed to send message");
+        throw new Error(err.error || "Gagal mengirim pesan");
       }
 
       setStatus("success");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(err instanceof Error ? err.message : "Terjadi kesalahan");
       setStatus("error");
     }
   };
@@ -53,13 +53,13 @@ export default function ContactPage() {
         <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30 mb-6">
           <CheckCircle className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
         </div>
-        <h1 className="text-3xl font-bold">Message Sent</h1>
+        <h1 className="text-3xl font-bold">Pesan Terkirim</h1>
         <p className="mt-3 text-zinc-600 dark:text-zinc-400">
-          Thanks for reaching out. I&apos;ll review your message and respond within
-          24 hours. For urgent matters, connect via LinkedIn.
+          Terima kasih sudah menghubungi saya. Saya akan meninjau pesan Anda dan merespons dalam
+          24 jam. Untuk kebutuhan mendesak, silakan hubungi melalui LinkedIn.
         </p>
         <Button className="mt-6" onClick={() => setStatus("idle")}>
-          Send Another
+          Kirim Lagi
         </Button>
       </div>
     );
@@ -70,32 +70,32 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
         {/* Info */}
         <div className="lg:col-span-2">
-          <Badge variant="secondary" className="mb-4">Get in Touch</Badge>
+          <Badge variant="secondary" className="mb-4">Hubungi Saya</Badge>
           <h1 className="text-3xl font-bold tracking-tight">
-            Let&apos;s discuss your project
+            Mari diskusikan proyek Anda
           </h1>
           <p className="mt-4 text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            Whether you need an AI-powered system, an internal tool, or a
-            full-stack application — I&apos;d like to understand your business
-            challenge first.
+            Baik Anda membutuhkan sistem berbasis AI, tools internal, maupun
+            aplikasi full stack — saya ingin memahami tantangan bisnis Anda
+            terlebih dahulu.
           </p>
 
           <div className="mt-8 space-y-4">
             {[
               {
                 icon: MessageSquare,
-                title: "Technical Consultation",
-                desc: "Architecture reviews, system design, tech stack decisions",
+                title: "Konsultasi Teknis",
+                desc: "Review arsitektur, desain sistem, dan keputusan tech stack",
               },
               {
                 icon: Building,
-                title: "B2B Systems",
-                desc: "Enterprise tools, SaaS products, internal platforms",
+                title: "Sistem B2B",
+                desc: "Tools enterprise, produk SaaS, dan platform internal",
               },
               {
                 icon: Mail,
-                title: "AI Integration",
-                desc: "Document processing, NLP, predictive analytics",
+                title: "Integrasi AI",
+                desc: "Pemrosesan dokumen, NLP, dan analitik prediktif",
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-3">
@@ -115,44 +115,44 @@ export default function ContactPage() {
         <div className="lg:col-span-3">
           <Card>
             <CardHeader>
-              <CardTitle>Send a Message</CardTitle>
+              <CardTitle>Kirim Pesan</CardTitle>
               <CardDescription>
-                All fields except Company are required. Messages are stored securely
-                and visible only to the admin.
+                Semua field kecuali Perusahaan wajib diisi. Pesan disimpan secara aman
+                dan hanya dapat dilihat oleh admin.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1.5">Name</label>
-                    <Input name="name" required placeholder="Your name" />
+                    <label className="block text-sm font-medium mb-1.5">Nama</label>
+                    <Input name="name" required placeholder="Nama Anda" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1.5">Email</label>
-                    <Input name="email" type="email" required placeholder="you@company.com" />
+                    <Input name="email" type="email" required placeholder="anda@perusahaan.com" />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-1.5">
-                    Company <span className="text-zinc-400">(optional)</span>
+                    Perusahaan <span className="text-zinc-400">(opsional)</span>
                   </label>
-                  <Input name="company" placeholder="Your company" />
+                  <Input name="company" placeholder="Nama perusahaan Anda" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Subject</label>
-                  <Input name="subject" required placeholder="What's this about?" />
+                  <label className="block text-sm font-medium mb-1.5">Subjek</label>
+                  <Input name="subject" required placeholder="Topik pesan ini tentang apa?" />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Message</label>
+                  <label className="block text-sm font-medium mb-1.5">Pesan</label>
                   <Textarea
                     name="message"
                     required
                     rows={5}
-                    placeholder="Describe your project or question..."
+                    placeholder="Jelaskan proyek atau pertanyaan Anda..."
                   />
                 </div>
 
@@ -168,10 +168,10 @@ export default function ContactPage() {
                   {status === "submitting" ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
+                      Mengirim...
                     </>
                   ) : (
-                    "Send Message"
+                    "Kirim Pesan"
                   )}
                 </Button>
               </form>

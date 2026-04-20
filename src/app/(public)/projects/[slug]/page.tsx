@@ -28,7 +28,7 @@ async function getProject(slug: string) {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProject(slug);
-  if (!project) return { title: "Project Not Found" };
+  if (!project) return { title: "Proyek Tidak Ditemukan" };
 
   return {
     title: project.title,
@@ -49,7 +49,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        All Projects
+        Semua Proyek
       </Link>
 
       {/* Header */}
@@ -60,7 +60,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               {category.name}
             </Badge>
           ))}
-          {project.featured && <Badge>Featured</Badge>}
+          {project.featured && <Badge>Unggulan</Badge>}
         </div>
 
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -74,14 +74,14 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {project.demoUrl && (
             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
               <Button className="gap-2">
-                Live Demo <ExternalLink className="h-4 w-4" />
+                Demo Langsung <ExternalLink className="h-4 w-4" />
               </Button>
             </a>
           )}
           {project.repoUrl && (
             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" className="gap-2">
-                Source Code <Github className="h-4 w-4" />
+                Kode Sumber <Github className="h-4 w-4" />
               </Button>
             </a>
           )}
@@ -91,7 +91,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {/* Business Problem */}
       <section className="mt-12">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
-          The Business Problem
+          Masalah Bisnis
         </h2>
         <div className="prose prose-zinc dark:prose-invert max-w-none">
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed whitespace-pre-line">
@@ -103,7 +103,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {/* Technical Solution */}
       <section className="mt-12">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
-          Technical Solution
+          Solusi Teknis
         </h2>
         <div className="prose prose-zinc dark:prose-invert max-w-none">
           <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed whitespace-pre-line">
@@ -116,7 +116,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {project.architecture && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
-            System Architecture
+            Arsitektur Sistem
           </h2>
           <Card className="overflow-hidden">
             <CardContent className="p-6 bg-zinc-50/50 dark:bg-zinc-900/50">
@@ -132,7 +132,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {(project.impact || project.metrics.length > 0) && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
-            Measurable Impact
+            Dampak Terukur
           </h2>
           {project.metrics.length > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
@@ -164,7 +164,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {project.techStack.length > 0 && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-4">
-            Tech Stack
+            Teknologi yang Digunakan
           </h2>
           <Card>
             <CardContent className="p-6">

@@ -7,50 +7,50 @@ import Link from "next/link";
 import { TechStackPills } from "@/components/ui/tech-icon";
 
 export const metadata: Metadata = {
-  title: "Live Demos",
-  description: "Interactive demos of AI-powered business tools. Try invoice processing, business chat, and sales forecasting.",
+  title: "Demo Langsung",
+  description: "Demo interaktif untuk tools bisnis berbasis AI. Coba pemrosesan invoice, chat data bisnis, dan peramalan penjualan.",
 };
 
 const demos = [
   {
     id: "invoice-processor",
-    title: "AI Invoice Processor",
+    title: "Pemroses Invoice AI",
     description:
-      "Upload an invoice image or PDF — the AI extracts vendor, line items, totals, and due dates into structured JSON. Simulates what enterprise AP automation looks like.",
+      "Unggah gambar invoice atau PDF — AI akan mengekstrak vendor, item, total, dan tanggal jatuh tempo ke dalam JSON terstruktur. Mensimulasikan otomasi account payable kelas enterprise.",
     businessContext:
-      "Accounts payable teams process thousands of invoices monthly. Manual entry = errors + delays. This demo shows AI-powered extraction that integrates with ERP systems.",
+      "Tim account payable memproses ribuan invoice setiap bulan. Input manual berarti error dan keterlambatan. Demo ini menunjukkan ekstraksi berbasis AI yang terintegrasi dengan sistem ERP.",
     icon: Brain,
     status: "live" as const,
     href: "/demos/invoice-processor",
-    tags: ["AI/ML", "Document Processing", "Automation"],
+    tags: ["AI/ML", "Pemrosesan Dokumen", "Otomasi"],
     techStack: ["Python", "OpenAI", "Next.js", "MySQL"],
     gradient: "from-violet-500 to-purple-600",
   },
   {
     id: "business-chat",
-    title: "Business Data Chat",
+    title: "Chat Data Bisnis",
     description:
-      "Chat with a simulated company database. Ask questions like 'What were Q3 sales?' or 'Show top customers by revenue' and get structured responses.",
+      "Mengobrol dengan database perusahaan simulasi. Ajukan pertanyaan seperti 'Berapa penjualan Q3?' atau 'Tampilkan pelanggan teratas berdasarkan pendapatan' dan dapatkan jawaban terstruktur.",
     businessContext:
-      "Business users shouldn't need SQL skills to get answers. Natural language interfaces to company data reduce dependency on engineering for ad-hoc queries.",
+      "Pengguna bisnis tidak seharusnya perlu kemampuan SQL untuk mendapatkan jawaban. Antarmuka bahasa alami ke data perusahaan mengurangi ketergantungan pada engineering untuk query ad-hoc.",
     icon: MessageSquare,
     status: "live" as const,
     href: "/demos/business-chat",
-    tags: ["NLP", "Data Analytics", "Chat Interface"],
+    tags: ["NLP", "Analitik Data", "Antarmuka Chat"],
     techStack: ["OpenAI", "Next.js", "TypeScript", "Prisma"],
     gradient: "from-blue-500 to-cyan-600",
   },
   {
     id: "sales-forecast",
-    title: "Sales Forecasting Dashboard",
+    title: "Dashboard Peramalan Penjualan",
     description:
-      "Interactive visualization of sales data with trend analysis, seasonal patterns, and predictive forecasting using statistical models.",
+      "Visualisasi interaktif data penjualan dengan analisis tren, pola musiman, dan peramalan prediktif menggunakan model statistik.",
     businessContext:
-      "Sales leaders need forward-looking data, not just historical reports. Forecasting dashboards enable better territory planning and revenue prediction.",
+      "Pimpinan penjualan membutuhkan data yang berorientasi ke depan, bukan hanya laporan historis. Dashboard forecasting memungkinkan perencanaan wilayah dan prediksi pendapatan yang lebih baik.",
     icon: TrendingUp,
     status: "live" as const,
     href: "/demos/sales-forecast",
-    tags: ["Data Viz", "Forecasting", "Analytics"],
+    tags: ["Visualisasi Data", "Forecasting", "Analitik"],
     techStack: ["React", "TypeScript", "Python", "Node.js"],
     gradient: "from-emerald-500 to-green-600",
   },
@@ -62,14 +62,14 @@ export default function DemosPage() {
       <div className="mx-auto max-w-2xl text-center mb-16 animate-fade-in-up">
         <Badge variant="secondary" className="mb-4 gap-1.5">
           <Sparkles className="h-3 w-3" />
-          Interactive
+          Interaktif
         </Badge>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Live Demo Environment
+          Lingkungan Demo Langsung
         </h1>
         <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-          Don&apos;t just read about capabilities. Interact with real systems that
-          process data, run AI models, and visualize results.
+          Jangan hanya membaca kapabilitasnya. Berinteraksilah dengan sistem nyata yang
+          memproses data, menjalankan model AI, dan memvisualisasikan hasil.
         </p>
       </div>
 
@@ -102,7 +102,7 @@ export default function DemosPage() {
                           {demo.status === "live" && (
                             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                           )}
-                          {demo.status === "live" ? "Live" : "Coming Soon"}
+                          {demo.status === "live" ? "Aktif" : "Segera Hadir"}
                         </Badge>
                       </div>
                       <CardDescription className="text-sm leading-relaxed">
@@ -116,7 +116,7 @@ export default function DemosPage() {
                   {/* Business Context */}
                   <div className="rounded-xl bg-zinc-50 dark:bg-zinc-900/50 p-4 mb-4 border border-zinc-100 dark:border-zinc-800">
                     <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">
-                      Why This Matters
+                      Kenapa Ini Penting
                     </p>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                       {demo.businessContext}
@@ -138,7 +138,7 @@ export default function DemosPage() {
                     </div>
                     <Link href={demo.href}>
                       <Button size="sm" className="gap-1.5 shadow-sm">
-                        Launch Demo
+                        Buka Demo
                         <ArrowRight className="h-3 w-3" />
                       </Button>
                     </Link>

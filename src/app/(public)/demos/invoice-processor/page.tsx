@@ -44,11 +44,11 @@ interface InvoiceResult {
 }
 
 const pipelineStages = [
-  { id: "uploading", label: "Upload", icon: Upload, description: "Uploading document" },
-  { id: "ocr", label: "OCR", icon: Scan, description: "Text recognition" },
-  { id: "extraction", label: "AI Extract", icon: Brain, description: "NLP extraction" },
-  { id: "validation", label: "Validate", icon: Database, description: "Schema validation" },
-  { id: "complete", label: "Output", icon: FileJson, description: "JSON ready" },
+  { id: "uploading", label: "Unggah", icon: Upload, description: "Mengunggah dokumen" },
+  { id: "ocr", label: "OCR", icon: Scan, description: "Pengenalan teks" },
+  { id: "extraction", label: "Ekstraksi AI", icon: Brain, description: "Ekstraksi NLP" },
+  { id: "validation", label: "Validasi", icon: Database, description: "Validasi skema" },
+  { id: "complete", label: "Output", icon: FileJson, description: "JSON siap pakai" },
 ];
 
 export default function InvoiceProcessorDemo() {
@@ -102,10 +102,10 @@ export default function InvoiceProcessorDemo() {
       dueDate: "2026-03-31",
       purchaseOrder: "PO-" + Math.floor(Math.random() * 9000 + 1000),
       lineItems: [
-        { description: "Enterprise API Gateway — Monthly", quantity: 1, unitPrice: 2499.0, total: 2499.0 },
-        { description: "Data Processing Units (1M requests)", quantity: 3, unitPrice: 149.99, total: 449.97 },
-        { description: "Premium Support SLA", quantity: 1, unitPrice: 799.0, total: 799.0 },
-        { description: "SSL Certificate — Wildcard", quantity: 2, unitPrice: 89.50, total: 179.0 },
+        { description: "Enterprise API Gateway — Bulanan", quantity: 1, unitPrice: 2499.0, total: 2499.0 },
+        { description: "Unit Pemrosesan Data (1 juta request)", quantity: 3, unitPrice: 149.99, total: 449.97 },
+        { description: "SLA Dukungan Premium", quantity: 1, unitPrice: 799.0, total: 799.0 },
+        { description: "Sertifikat SSL — Wildcard", quantity: 2, unitPrice: 89.50, total: 179.0 },
       ],
       subtotal: 3926.97,
       tax: 706.85,
@@ -159,7 +159,7 @@ export default function InvoiceProcessorDemo() {
         className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-white mb-8 transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
-        All Demos
+        Semua Demo
       </Link>
 
       {/* Header */}
@@ -170,13 +170,13 @@ export default function InvoiceProcessorDemo() {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold tracking-tight">AI Invoice Processor</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Pemroses Invoice AI</h1>
               <Badge variant="success" className="gap-1">
-                <Sparkles className="h-3 w-3" /> Live Demo
+                <Sparkles className="h-3 w-3" /> Demo Langsung
               </Badge>
             </div>
             <p className="text-sm text-zinc-500 mt-0.5">
-              Upload any file to simulate AI-powered invoice extraction
+              Unggah file apa pun untuk mensimulasikan ekstraksi invoice berbasis AI
             </p>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function InvoiceProcessorDemo() {
             <CardHeader className="pb-3">
               <CardTitle className="text-base flex items-center gap-2">
                 <Upload className="h-4 w-4 text-zinc-400" />
-                Document Input
+                Input Dokumen
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -275,10 +275,10 @@ export default function InvoiceProcessorDemo() {
                     <Upload className="h-7 w-7 text-zinc-400 group-hover:text-violet-500 transition-colors" />
                   </div>
                   <p className="mt-4 text-sm font-semibold">
-                    Drag & drop or click to upload
+                    Tarik dan lepas atau klik untuk mengunggah
                   </p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    PDF, PNG, JPEG, or any file (demo mode)
+                    PDF, PNG, JPEG, atau file apa pun (mode demo)
                   </p>
                 </div>
               ) : (
@@ -292,8 +292,8 @@ export default function InvoiceProcessorDemo() {
                         <p className="text-sm font-semibold truncate">{fileName}</p>
                         <p className="text-xs text-zinc-500">
                           {stage === "complete"
-                            ? `Processed in ${(elapsedMs / 1000).toFixed(1)}s`
-                            : "Processing..."}
+                            ? `Diproses dalam ${(elapsedMs / 1000).toFixed(1)} dtk`
+                            : "Sedang diproses..."}
                         </p>
                       </div>
                       <div>
@@ -318,19 +318,19 @@ export default function InvoiceProcessorDemo() {
                           <p className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
                             {Math.round(result.confidence * 100)}%
                           </p>
-                          <p className="text-[10px] text-emerald-600/70 font-medium">Confidence</p>
+                          <p className="text-[10px] text-emerald-600/70 font-medium">Akurasi</p>
                         </div>
                         <div className="rounded-xl bg-blue-50 dark:bg-blue-900/20 p-3 text-center">
                           <p className="text-lg font-bold text-blue-600 dark:text-blue-400">
                             {result.fieldsExtracted}
                           </p>
-                          <p className="text-[10px] text-blue-600/70 font-medium">Fields</p>
+                          <p className="text-[10px] text-blue-600/70 font-medium">Field</p>
                         </div>
                         <div className="rounded-xl bg-violet-50 dark:bg-violet-900/20 p-3 text-center">
                           <p className="text-lg font-bold text-violet-600 dark:text-violet-400">
                             {result.processingTimeMs}ms
                           </p>
-                          <p className="text-[10px] text-violet-600/70 font-medium">Latency</p>
+                          <p className="text-[10px] text-violet-600/70 font-medium">Latensi</p>
                         </div>
                       </div>
 
@@ -338,15 +338,15 @@ export default function InvoiceProcessorDemo() {
                       <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
                         <div className="bg-zinc-50 dark:bg-zinc-900 px-4 py-2 border-b border-zinc-200 dark:border-zinc-800">
                           <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                            Extracted Line Items
+                            Item Baris Terekstrak
                           </p>
                         </div>
                         <table className="w-full text-xs">
                           <thead>
                             <tr className="border-b border-zinc-100 dark:border-zinc-800">
                               <th className="text-left px-4 py-2 font-medium text-zinc-400">Item</th>
-                              <th className="text-right px-4 py-2 font-medium text-zinc-400">Qty</th>
-                              <th className="text-right px-4 py-2 font-medium text-zinc-400">Price</th>
+                              <th className="text-right px-4 py-2 font-medium text-zinc-400">Jumlah</th>
+                              <th className="text-right px-4 py-2 font-medium text-zinc-400">Harga</th>
                               <th className="text-right px-4 py-2 font-medium text-zinc-400">Total</th>
                             </tr>
                           </thead>
@@ -366,7 +366,7 @@ export default function InvoiceProcessorDemo() {
                               <td className="px-4 py-1.5 text-right font-medium">${result.subtotal.toFixed(2)}</td>
                             </tr>
                             <tr>
-                              <td colSpan={3} className="px-4 py-1.5 text-right text-zinc-500">Tax</td>
+                              <td colSpan={3} className="px-4 py-1.5 text-right text-zinc-500">Pajak</td>
                               <td className="px-4 py-1.5 text-right font-medium">${result.tax.toFixed(2)}</td>
                             </tr>
                             <tr className="font-bold">
@@ -379,7 +379,7 @@ export default function InvoiceProcessorDemo() {
 
                       <Button variant="outline" className="w-full gap-2" onClick={reset}>
                         <RotateCcw className="h-4 w-4" />
-                        Process Another Document
+                        Proses Dokumen Lain
                       </Button>
                     </>
                   )}
@@ -392,15 +392,15 @@ export default function InvoiceProcessorDemo() {
           <Card>
             <CardContent className="p-5">
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">
-                Production Architecture
+                Arsitektur Produksi
               </p>
               <div className="space-y-2">
                 {[
-                  { step: "1", text: "Document uploaded to S3 with pre-signed URL" },
-                  { step: "2", text: "Webhook triggers AI pipeline (OCR → NLP extraction)" },
-                  { step: "3", text: "Structured data validated against invoice schema" },
-                  { step: "4", text: "Results stored in MySQL, pushed to ERP via API" },
-                  { step: "5", text: "Audit log records the processing event" },
+                  { step: "1", text: "Dokumen diunggah ke S3 menggunakan pre-signed URL" },
+                  { step: "2", text: "Webhook memicu pipeline AI (OCR → ekstraksi NLP)" },
+                  { step: "3", text: "Data terstruktur divalidasi terhadap skema invoice" },
+                  { step: "4", text: "Hasil disimpan ke MySQL lalu dikirim ke ERP via API" },
+                  { step: "5", text: "Audit log mencatat event pemrosesan" },
                 ].map((item) => (
                   <div key={item.step} className="flex items-start gap-3">
                     <span className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800 text-[10px] font-bold text-zinc-500 shrink-0 mt-0.5">
@@ -421,19 +421,19 @@ export default function InvoiceProcessorDemo() {
               <div className="flex items-center justify-between">
                 <CardTitle className="text-base flex items-center gap-2">
                   <FileJson className="h-4 w-4 text-zinc-400" />
-                  Extracted Data (JSON)
+                  Data Terekstrak (JSON)
                 </CardTitle>
                 {result && (
                   <div className="flex items-center gap-2">
                     <Badge variant="success" className="gap-1 text-[10px]">
-                      {Math.round(result.confidence * 100)}% confidence
+                      Akurasi {Math.round(result.confidence * 100)}%
                     </Badge>
                     <Button
                       variant="ghost"
                       size="icon"
                       className="h-8 w-8"
                       onClick={copyToClipboard}
-                      title="Copy JSON"
+                      title="Salin JSON"
                     >
                       {copied ? (
                         <Check className="h-3.5 w-3.5 text-emerald-500" />
@@ -459,14 +459,14 @@ export default function InvoiceProcessorDemo() {
                     {isProcessing ? (
                       <span className="flex items-center justify-center gap-2">
                         <Loader2 className="h-4 w-4 animate-spin" />
-                        AI is processing your document...
+                        AI sedang memproses dokumen Anda...
                       </span>
                     ) : (
-                      "Upload a document to see extracted data"
+                      "Unggah dokumen untuk melihat data hasil ekstraksi"
                     )}
                   </p>
                   <p className="text-xs text-zinc-400/60 mt-1">
-                    Output is ERP-ready structured JSON
+                    Output berupa JSON terstruktur yang siap untuk ERP
                   </p>
                 </div>
               )}

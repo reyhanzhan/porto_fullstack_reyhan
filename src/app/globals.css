@@ -1,30 +1,30 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Design System — Vercel / Linear / OpenAI style
+   Minimalist, thin borders, subtle glassmorphism
+   ========================================================================== */
+
 :root {
-  --background: #f8f9fc;
-  --foreground: #1e1b4b;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --accent-muted: rgba(99, 102, 241, 0.08);
-  --surface: #ffffff;
-  --surface-hover: #f5f3ff;
-  --border: rgba(99, 102, 241, 0.12);
-  --border-strong: rgba(99, 102, 241, 0.25);
-  --muted: #64748b;
-  --muted-foreground: #475569;
+  --background: #fafafa;          /* zinc-50 */
+  --foreground: #09090b;          /* zinc-950 */
+  --surface: #ffffff;             /* white */
+  --surface-hover: #f4f4f5;      /* zinc-100 */
+  --border: rgba(228,228,231,1); /* zinc-200 */
+  --border-subtle: rgba(228,228,231,0.6);
+  --muted: #71717a;              /* zinc-500 */
+  --muted-foreground: #52525b;   /* zinc-600 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-light: var(--accent-light);
   --color-surface: var(--surface);
   --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --animate-fade-in: fade-in 0.5s ease-out;
-  --animate-fade-in-up: fade-in-up 0.5s ease-out;
+  --animate-fade-in-up: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-slide-in-right: slide-in-right 0.3s ease-out;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
   --animate-shimmer: shimmer 2s linear infinite;
@@ -32,44 +32,37 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --background: #0a0a1a;
-    --foreground: #eef2ff;
-    --accent: #818cf8;
-    --accent-light: #a5b4fc;
-    --accent-muted: rgba(129, 140, 248, 0.1);
-    --surface: #111128;
-    --surface-hover: #1a1a3e;
-    --border: rgba(129, 140, 248, 0.12);
-    --border-strong: rgba(129, 140, 248, 0.25);
-    --muted: #94a3b8;
-    --muted-foreground: #cbd5e1;
+    --background: #09090b;           /* zinc-950 */
+    --foreground: #fafafa;           /* zinc-50 */
+    --surface: rgba(24,24,27,0.5);   /* zinc-900/50 */
+    --surface-hover: #27272a;        /* zinc-800 */
+    --border: rgba(39,39,42,0.5);    /* zinc-800/50 */
+    --border-subtle: rgba(39,39,42,0.3);
+    --muted: #a1a1aa;               /* zinc-400 */
+    --muted-foreground: #d4d4d8;    /* zinc-300 */
   }
 }
+
 .dark {
-  --background: #0a0a1a;
-  --foreground: #eef2ff;
-  --accent: #818cf8;
-  --accent-light: #a5b4fc;
-  --accent-muted: rgba(129, 140, 248, 0.1);
-  --surface: #111128;
-  --surface-hover: #1a1a3e;
-  --border: rgba(129, 140, 248, 0.12);
-  --border-strong: rgba(129, 140, 248, 0.25);
-  --muted: #94a3b8;
-  --muted-foreground: #cbd5e1;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --surface: rgba(24,24,27,0.5);
+  --surface-hover: #27272a;
+  --border: rgba(39,39,42,0.5);
+  --border-subtle: rgba(39,39,42,0.3);
+  --muted: #a1a1aa;
+  --muted-foreground: #d4d4d8;
 }
+
 .light {
-  --background: #f8f9fc;
-  --foreground: #1e1b4b;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --accent-muted: rgba(99, 102, 241, 0.08);
+  --background: #fafafa;
+  --foreground: #09090b;
   --surface: #ffffff;
-  --surface-hover: #f5f3ff;
-  --border: rgba(99, 102, 241, 0.12);
-  --border-strong: rgba(99, 102, 241, 0.25);
-  --muted: #64748b;
-  --muted-foreground: #475569;
+  --surface-hover: #f4f4f5;
+  --border: rgba(228,228,231,1);
+  --border-subtle: rgba(228,228,231,0.6);
+  --muted: #71717a;
+  --muted-foreground: #52525b;
 }
 
 * {
@@ -84,19 +77,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — subtle zinc */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.25);
-  border-radius: 4px;
+  background: rgba(161,161,170,0.3);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.4);
+  background: rgba(161,161,170,0.5);
+}
+
+/* Marquee animation for tech stack */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 .dark ::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb:is(.dark *) {

@@ -10,9 +10,9 @@ import { TechStackPills } from "@/components/ui/tech-icon";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Proyek",
   description:
-    "Enterprise-grade projects solving real B2B problems with AI, full stack engineering, and system design.",
+    "Proyek kelas enterprise yang menyelesaikan masalah B2B nyata dengan AI, engineering full stack, dan desain sistem.",
 };
 
 async function getProjects() {
@@ -35,11 +35,11 @@ export default async function ProjectsPage() {
       {/* Header */}
       <div className="mx-auto max-w-2xl text-center animate-fade-in-up">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Project Portfolio
+          Portofolio Proyek
         </h1>
         <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
-          Each project solves a specific business problem. Not toy apps &mdash; production
-          systems with measurable impact.
+          Setiap proyek menyelesaikan masalah bisnis yang spesifik. Bukan aplikasi mainan &mdash; melainkan
+          sistem produksi dengan dampak yang terukur.
         </p>
       </div>
 
@@ -82,7 +82,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
           )}
           {project.featured && (
             <div className="absolute top-3 left-3">
-              <Badge variant="default" className="shadow-sm">Featured</Badge>
+              <Badge variant="default" className="shadow-sm">Unggulan</Badge>
             </div>
           )}
         </div>
@@ -117,7 +117,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
             {/* Business Problem */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">
-                Business Problem
+                Masalah Bisnis
               </h4>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
                 {project.description}
@@ -155,7 +155,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
                 href={`/projects/${project.slug}`}
                 className="inline-flex items-center gap-1 text-sm font-medium text-zinc-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 underline-offset-4 hover:underline transition-colors"
               >
-                View full case study
+                Lihat studi kasus lengkap
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
@@ -172,10 +172,10 @@ function EmptyState() {
       <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-800 mb-4">
         <Layers className="h-8 w-8 text-zinc-300 dark:text-zinc-600" />
       </div>
-      <h3 className="text-lg font-semibold">Projects coming soon</h3>
+      <h3 className="text-lg font-semibold">Proyek akan segera hadir</h3>
       <p className="mt-2 text-sm text-zinc-500 max-w-md mx-auto">
-        Project case studies are being prepared. Check back soon for detailed
-        breakdowns of enterprise systems I&apos;ve built.
+        Studi kasus proyek sedang disiapkan. Kembali lagi segera untuk melihat
+        breakdown detail dari sistem enterprise yang telah saya bangun.
       </p>
     </div>
   );

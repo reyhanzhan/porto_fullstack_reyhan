@@ -3,16 +3,16 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950/20 focus-visible:ring-offset-2 dark:focus-visible:ring-zinc-50/20 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
-        default: "bg-linear-to-r from-indigo-600 to-violet-600 text-white hover:from-indigo-500 hover:to-violet-500 shadow-md shadow-indigo-500/25 hover:shadow-lg hover:shadow-indigo-500/30 dark:from-indigo-500 dark:to-violet-500 dark:hover:from-indigo-400 dark:hover:to-violet-400 dark:shadow-indigo-500/20",
-        destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm shadow-red-500/20",
-        outline: "border border-indigo-200 bg-transparent hover:bg-indigo-50 hover:border-indigo-300 text-indigo-700 dark:border-indigo-500/30 dark:hover:bg-indigo-500/10 dark:text-indigo-300 dark:hover:border-indigo-400/50",
-        secondary: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-300 dark:hover:bg-indigo-500/20",
-        ghost: "hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-500/10 dark:hover:text-indigo-300",
-        link: "text-indigo-600 underline-offset-4 hover:underline dark:text-indigo-400",
+        default: "bg-zinc-950 text-zinc-50 hover:bg-zinc-800 shadow-sm dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200",
+        destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm",
+        outline: "border border-zinc-200 bg-transparent hover:bg-zinc-100 text-zinc-950 dark:border-zinc-800 dark:hover:bg-zinc-800/50 dark:text-zinc-50",
+        secondary: "bg-zinc-100 text-zinc-950 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-700",
+        ghost: "hover:bg-zinc-100 hover:text-zinc-950 dark:hover:bg-zinc-800 dark:hover:text-zinc-50",
+        link: "text-zinc-950 underline-offset-4 hover:underline dark:text-zinc-50",
       },
       size: {
         default: "h-10 px-4 py-2",
