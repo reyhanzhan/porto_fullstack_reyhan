@@ -7,20 +7,20 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg">
+          <div className="md:col-span-2 text-center md:text-left">
+            <Link href="/" className="inline-flex items-center gap-2 font-bold text-lg">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-950 dark:bg-zinc-50">
                 <Terminal className="h-4 w-4 text-white dark:text-zinc-950" />
               </div>
               <span className="text-zinc-950 dark:text-zinc-50">reyhan.dev</span>
             </Link>
-            <p className="mt-3 max-w-md text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="mx-auto mt-3 max-w-md text-sm text-zinc-500 dark:text-zinc-400 md:mx-0">
               Building AI-powered business systems for B2B companies.
               Full Stack Engineer specializing in enterprise solutions
               that drive measurable business outcomes.
             </p>
             {/* Social icons */}
-            <div className="mt-4 flex items-center gap-3">
+            <div className="mt-4 flex items-center justify-center gap-3 md:justify-start">
               <a
                 href="https://github.com/reyhanzhan"
                 target="_blank"
@@ -50,7 +50,7 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
               Navigation
             </h3>
@@ -73,7 +73,7 @@ export function Footer() {
           </div>
 
           {/* Connect */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
               Connect
             </h3>

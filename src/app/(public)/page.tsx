@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TechStackMarquee } from "@/components/ui/tech-icon";
+import BorderGlow from "@/components/BorderGlow";
 import {
   ArrowRight,
   Brain,
@@ -216,40 +217,55 @@ export default function HomePage() {
               <motion.div
                 key={cap.title}
                 variants={cardVariant}
-                className="group relative overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-zinc-950/5 dark:border-zinc-800/50 dark:bg-zinc-900/50 dark:hover:shadow-zinc-950/20 dark:hover:border-zinc-700/50"
+                className="transition-all duration-300 hover:-translate-y-0.5"
               >
-                {/* Hover glow */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.04),transparent)] dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.06),transparent)]" />
+                <BorderGlow
+                  edgeSensitivity={30}
+                  glowColor="40 80 80"
+                  backgroundColor="#120F17"
+                  borderRadius={28}
+                  glowRadius={40}
+                  glowIntensity={1}
+                  coneSpread={25}
+                  animated={false}
+                  colors={["#c084fc", "#f472b6", "#38bdf8"]}
+                  className="group h-full"
+                >
+                  <div className="relative overflow-hidden rounded-[28px] p-6">
+                    {/* Hover glow */}
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.04),transparent)] dark:bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.06),transparent)]" />
 
-                <div className="relative">
-                  {/* Icon */}
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-all duration-300 group-hover:border-indigo-200 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-400 dark:group-hover:border-indigo-500/30 dark:group-hover:bg-indigo-500/10 dark:group-hover:text-indigo-400">
-                    <cap.icon className="h-5 w-5" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="mt-4 text-base font-semibold text-zinc-950 dark:text-zinc-50">
-                    {cap.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                    {cap.description}
-                  </p>
-
-                  {/* Feature checklist */}
-                  <div className="mt-4 space-y-2">
-                    {cap.features.map((f) => (
-                      <div
-                        key={f}
-                        className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
-                      >
-                        <CheckCircle className="h-3.5 w-3.5 shrink-0 text-emerald-500 dark:text-emerald-400" />
-                        {f}
+                    <div className="relative">
+                      {/* Icon */}
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 transition-all duration-300 group-hover:border-indigo-200 group-hover:bg-indigo-50 group-hover:text-indigo-600 dark:border-zinc-800 dark:bg-zinc-800/50 dark:text-zinc-400 dark:group-hover:border-indigo-500/30 dark:group-hover:bg-indigo-500/10 dark:group-hover:text-indigo-400">
+                        <cap.icon className="h-5 w-5" />
                       </div>
-                    ))}
+
+                      {/* Title */}
+                      <h3 className="mt-4 text-base font-semibold text-zinc-950 dark:text-zinc-50">
+                        {cap.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                        {cap.description}
+                      </p>
+
+                      {/* Feature checklist */}
+                      <div className="mt-4 space-y-2">
+                        {cap.features.map((f) => (
+                          <div
+                            key={f}
+                            className="flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400"
+                          >
+                            <CheckCircle className="h-3.5 w-3.5 shrink-0 text-emerald-500 dark:text-emerald-400" />
+                            {f}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </BorderGlow>
               </motion.div>
             ))}
           </AnimatedSection>
@@ -288,7 +304,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
           <AnimatedSection className="relative mx-auto max-w-2xl text-center">
             {/* Background glow */}
-            <div className="pointer-events-none absolute -inset-x-20 -inset-y-10 -z-10 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.06),transparent)] dark:bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.08),transparent)]" />
+            <div className="pointer-events-none absolute inset-x-0 -inset-y-10 -z-10 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.06),transparent)] dark:bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.08),transparent)] sm:-inset-x-20" />
 
             <motion.h2
               variants={fadeUp}
@@ -412,6 +428,7 @@ const techStack = [
   "Tailwind CSS",
   "Node.js",
   "Python",
+  "TensorFlow",
   "MySQL",
   "Prisma",
   "Docker",
