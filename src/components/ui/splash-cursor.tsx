@@ -1,4 +1,5 @@
 'use client';
+/* eslint-disable react-hooks/unsupported-syntax */
 
 import React, { useEffect, useRef } from 'react';
 
@@ -102,12 +103,13 @@ export default function SplashCursor({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const canvasEl = canvas;
 
-    let pointers: Pointer[] = [pointerPrototype()];
+    const pointers: Pointer[] = [pointerPrototype()];
     let rafId = 0;
     let hasStarted = false;
 
-    let config = {
+    const config = {
       SIM_RESOLUTION,
       DYE_RESOLUTION,
       CAPTURE_RESOLUTION,
@@ -243,9 +245,9 @@ export default function SplashCursor({
     }
 
     const context = getWebGLContext(canvas);
+    if (!context.gl || !context.ext) return;
     const gl = context.gl;
     const ext = context.ext;
-    if (!gl || !ext) return;
 
     if (!ext.supportLinearFiltering) {
       config.DYE_RESOLUTION = 256;
@@ -853,11 +855,11 @@ export default function SplashCursor({
     }
 
     function resizeCanvas() {
-      const width = scaleByPixelRatio(canvas.clientWidth);
-      const height = scaleByPixelRatio(canvas.clientHeight);
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
+      const width = scaleByPixelRatio(canvasEl.clientWidth);
+      const height = scaleByPixelRatio(canvasEl.clientHeight);
+      if (canvasEl.width !== width || canvasEl.height !== height) {
+        canvasEl.width = width;
+        canvasEl.height = height;
         return true;
       }
       return false;
@@ -935,19 +937,19 @@ export default function SplashCursor({
     }
 
     function correctDeltaX(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvasEl.width / canvasEl.height;
       if (aspectRatio < 1) delta *= aspectRatio;
       return delta;
     }
 
     function correctDeltaY(delta: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvasEl.width / canvasEl.height;
       if (aspectRatio > 1) delta /= aspectRatio;
       return delta;
     }
 
     function correctRadius(radius: number) {
-      const aspectRatio = canvas.width / canvas.height;
+      const aspectRatio = canvasEl.width / canvasEl.height;
       if (aspectRatio > 1) radius *= aspectRatio;
       return radius;
     }
@@ -956,8 +958,8 @@ export default function SplashCursor({
       pointer.id = id;
       pointer.down = true;
       pointer.moved = false;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1 - posY / canvas.height;
+      pointer.texcoordX = posX / canvasEl.width;
+      pointer.texcoordY = 1 - posY / canvasEl.height;
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
       pointer.deltaX = 0;
@@ -968,8 +970,8 @@ export default function SplashCursor({
     function updatePointerMoveData(pointer: Pointer, posX: number, posY: number, color: ColorRGB) {
       pointer.prevTexcoordX = pointer.texcoordX;
       pointer.prevTexcoordY = pointer.texcoordY;
-      pointer.texcoordX = posX / canvas.width;
-      pointer.texcoordY = 1 - posY / canvas.height;
+      pointer.texcoordX = posX / canvasEl.width;
+      pointer.texcoordY = 1 - posY / canvasEl.height;
       pointer.deltaX = correctDeltaX(pointer.texcoordX - pointer.prevTexcoordX);
       pointer.deltaY = correctDeltaY(pointer.texcoordY - pointer.prevTexcoordY);
       pointer.moved = Math.abs(pointer.deltaX) > 0 || Math.abs(pointer.deltaY) > 0;
@@ -986,7 +988,7 @@ export default function SplashCursor({
         gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
       }
       if (splatProgram.uniforms.aspectRatio) {
-        gl.uniform1f(splatProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+        gl.uniform1f(splatProgram.uniforms.aspectRatio, canvasEl.width / canvasEl.height);
       }
       if (splatProgram.uniforms.point) {
         gl.uniform2f(splatProgram.uniforms.point, x, y);
