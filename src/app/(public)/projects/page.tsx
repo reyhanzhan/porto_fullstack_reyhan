@@ -1,13 +1,14 @@
 import { db } from "@/lib/db";
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ArrowRight, ExternalLink, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TechStackPills } from "@/components/ui/tech-icon";
 import type { Metadata } from "next";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Proyek",
@@ -64,7 +65,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
     <Card className="group overflow-hidden transition-all hover:shadow-lg hover:border-zinc-300 dark:hover:border-zinc-700 duration-300">
       <div className="grid grid-cols-1 lg:grid-cols-3">
         {/* Image / Placeholder */}
-        <div className="relative bg-gradient-to-br from-zinc-100 to-zinc-50 dark:from-zinc-800 dark:to-zinc-900 lg:col-span-1 min-h-[200px] flex items-center justify-center">
+        <div className="relative bg-linear-to-br from-zinc-100 to-zinc-50 dark:from-zinc-800 dark:to-zinc-900 lg:col-span-1 min-h-50 flex items-center justify-center">
           {project.imageUrl ? (
             <img
               src={project.imageUrl}

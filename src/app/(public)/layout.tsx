@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import SplashCursor from "@/components/ui/splash-cursor";
+import { LazySplashCursor } from "@/components/layout/lazy-splash-cursor";
 
 export default function PublicLayout({
   children,
@@ -9,7 +9,7 @@ export default function PublicLayout({
 }) {
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-clip bg-zinc-50 dark:bg-zinc-950">
-      <SplashCursor
+      <LazySplashCursor
         DENSITY_DISSIPATION={3.5}
         VELOCITY_DISSIPATION={2}
         PRESSURE={0.1}

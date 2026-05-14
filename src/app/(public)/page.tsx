@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TechStackMarquee } from "@/components/ui/tech-icon";
-import BorderGlow from "@/components/BorderGlow";
+
 import {
   ArrowRight,
   Brain,
@@ -18,6 +18,15 @@ import {
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
+import ShapeGrid from "@/components/ShapeGrid";
+
+// Dynamic import: BorderGlow runs complex pointer-tracking + canvas masking.
+// Deferring it prevents it from bloating the initial JS parse on every visit.
+const BorderGlow = dynamic(() => import("@/components/BorderGlow"), {
+  ssr: false,
+  loading: () => null,
+});
 
 // =============================================================================
 // LANDING PAGE — Premium Vercel / Linear / OpenAI Style
@@ -60,6 +69,35 @@ const cardVariant = {
   },
 };
 
+// Blur + slide up — for headings and hero text
+const blurInUp = {
+  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      ease: [0.16, 1, 0.3, 1] as const,
+      delay: i * 0.12,
+    },
+  }),
+};
+
+// Spring scale — for numbers / metrics
+const scaleUp = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.55,
+      ease: [0.34, 1.56, 0.64, 1] as const,
+      delay: i * 0.08,
+    },
+  }),
+};
+
 // Reusable scroll-triggered section
 function AnimatedSection({
   children,
@@ -88,23 +126,30 @@ export default function HomePage() {
   return (
     <>
       {/* ================================================================= */}
-      {/* HERO SECTION                                                      */}
+      {/* HERO SECTION — Authority + First Impression                       */}
       {/* ================================================================= */}
-      <section className="relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 -z-10">
+      <section className="relative overflow-hidden bg-white dark:bg-slate-950">
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <ShapeGrid
+            speed={0.5}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="#2F293A"
+            hoverFillColor="#222222"
+            shape="square"
+            hoverTrailAmount={0}
+            className="h-full w-full"
+          />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(99,102,241,0.1),transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(129,140,248,0.08),transparent)]" />
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(161,161,170,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(161,161,170,0.03)_1px,transparent_1px)] bg-size-[64px_64px] dark:bg-[linear-gradient(rgba(161,161,170,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(161,161,170,0.05)_1px,transparent_1px)]" />
         </div>
 
-        <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-36 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-28 sm:px-6 sm:py-36 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <Badge
                 variant="secondary"
@@ -117,9 +162,9 @@ export default function HomePage() {
 
             {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
               className="text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-6xl lg:text-7xl"
             >
               I build{" "}
@@ -131,9 +176,9 @@ export default function HomePage() {
 
             {/* Subheadline */}
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
               className="mt-6 text-lg leading-relaxed text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto"
             >
               Enterprise-grade full stack solutions that automate workflows,
@@ -149,7 +194,7 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.48 }}
               className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Link href="/projects">
@@ -168,9 +213,9 @@ export default function HomePage() {
 
             {/* Metrics */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.65, ease: [0.34, 1.2, 0.64, 1], delay: 0.6 }}
               className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-6"
             >
               {metrics.map((stat) => (
@@ -192,19 +237,19 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================= */}
-      {/* FEATURES SECTION — Systems that solve real problems               */}
+      {/* FEATURES SECTION — Breathing Room + Readability                  */}
       {/* ================================================================= */}
-      <section className="relative">
+      <section className="relative bg-slate-50 dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-700/40">
         <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
             <motion.h2
-              variants={fadeUp}
+              variants={blurInUp}
               className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
             >
               Systems that solve real problems
             </motion.h2>
             <motion.p
-              variants={fadeUp}
+              variants={blurInUp}
               className="mt-4 text-zinc-500 dark:text-zinc-400"
             >
               Every project is built to address a specific business pain point
@@ -276,18 +321,18 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================= */}
-      {/* TECH STACK — Infinite Marquee                                     */}
+      {/* TECH STACK — Innovation + Digital Feel                            */}
       {/* ================================================================= */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden bg-sky-50/60 dark:bg-[#060d1a] border-t border-sky-100/80 dark:border-slate-800/50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center">
             <motion.p
-              variants={fadeUp}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 mb-10"
+              variants={blurInUp}
+              className="text-xs font-medium uppercase tracking-[0.2em] text-sky-600/70 dark:text-sky-400/50 mb-10"
             >
               Production Tech Stack
             </motion.p>
-            <motion.div variants={fadeUp}>
+            <motion.div variants={blurInUp}>
               <TechStackMarquee techs={techStack} />
             </motion.div>
           </AnimatedSection>
@@ -298,23 +343,22 @@ export default function HomePage() {
       </section>
 
       {/* ================================================================= */}
-      {/* CTA SECTION                                                       */}
+      {/* CTA SECTION — Urgency + Focus Peak                               */}
       {/* ================================================================= */}
-      <section className="relative">
+      <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-slate-900 to-indigo-950">
+        {/* Ambient indigo glow */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_70%,rgba(99,102,241,0.22),transparent)]" />
         <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
           <AnimatedSection className="relative mx-auto max-w-2xl text-center">
-            {/* Background glow */}
-            <div className="pointer-events-none absolute inset-x-0 -inset-y-10 -z-10 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.06),transparent)] dark:bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(99,102,241,0.08),transparent)] sm:-inset-x-20" />
-
             <motion.h2
-              variants={fadeUp}
-              className="text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
+              variants={blurInUp}
+              className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
             >
               See the systems in action
             </motion.h2>
             <motion.p
-              variants={fadeUp}
-              className="mt-4 text-zinc-500 dark:text-zinc-400"
+              variants={blurInUp}
+              className="mt-4 text-slate-300"
             >
               Don&apos;t just read about it. Interact with live demos that
               process real data and show real results.
@@ -324,13 +368,13 @@ export default function HomePage() {
               className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Link href="/demos">
-                <Button size="lg" className="gap-2">
+                <Button size="lg" className="gap-2 bg-indigo-500 hover:bg-indigo-400 text-white border-0">
                   Launch Demo Environment
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="border-white/25 text-white hover:bg-white/10 hover:text-white">
                   Get in Touch
                 </Button>
               </Link>
