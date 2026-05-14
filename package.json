@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:reset": "node -e \"const fs=require('fs');try{fs.rmSync('.next',{recursive:true,force:true});console.log('cleared .next cache')}catch(e){console.log(e.message)}\" && next dev --turbopack",
+    "prebuild": "node -e \"const fs=require('fs');fs.rmSync('.next',{recursive:true,force:true});console.log('cleared .next cache')\"",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
