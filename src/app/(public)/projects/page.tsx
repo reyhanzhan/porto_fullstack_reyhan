@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { TechStackPills } from "@/components/ui/tech-icon";
 import type { Metadata } from "next";
 
-export const revalidate = 300;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Proyek",
