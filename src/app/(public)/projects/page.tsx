@@ -121,12 +121,12 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
                 Masalah Bisnis
               </h4>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
-                {project.description}
+                {project.description || ""}
               </p>
             </div>
 
             {/* Impact Metrics */}
-            {project.metrics.length > 0 && (
+            {(project.metrics?.length ?? 0) > 0 && (
               <div className="mt-4 flex flex-wrap gap-3">
                 {project.metrics.map((metric) => (
                   <div
@@ -142,10 +142,10 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
             )}
 
             {/* Tech Stack — Now with icons */}
-            {project.techStack.length > 0 && (
+            {(project.techStack?.length ?? 0) > 0 && (
               <div className="mt-4">
                 <TechStackPills
-                  techs={project.techStack.map(({ techTag }) => techTag.name)}
+                  techs={(project.techStack ?? []).map(({ techTag }) => techTag.name)}
                 />
               </div>
             )}

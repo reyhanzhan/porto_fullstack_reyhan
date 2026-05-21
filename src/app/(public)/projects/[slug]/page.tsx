@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: project.title,
-    description: project.description.slice(0, 160),
+    description: project.description ? project.description.slice(0, 160) : "",
   };
 }
 
@@ -55,7 +55,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {/* Header */}
       <div>
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.categories.map(({ category }) => (
+          {(project.categories ?? []).map(({ category }) => (
             <Badge key={category.id} variant="secondary">
               {category.name}
             </Badge>
@@ -129,12 +129,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       )}
 
       {/* Impact */}
-      {(project.impact || project.metrics.length > 0) && (
+      {((project.impact ?? "").length > 0 || (project.metrics?.length ?? 0) > 0) && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
             Dampak Terukur
           </h2>
-          {project.metrics.length > 0 && (
+          {(project.metrics?.length ?? 0) > 0 && (
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
               {project.metrics.map((metric) => (
                 <Card key={metric.id} className="overflow-hidden">
@@ -161,7 +161,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       )}
 
       {/* Tech Stack — Now with icons */}
-      {project.techStack.length > 0 && (
+      {(project.techStack?.length ?? 0) > 0 && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-4">
             Teknologi yang Digunakan
@@ -169,7 +169,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <Card>
             <CardContent className="p-6">
               <TechStackGrid
-                techs={project.techStack.map(({ techTag }) => techTag.name)}
+                techs={(project.techStack ?? []).map(({ techTag }) => techTag.name)}
                 size="md"
                 showLabels={true}
                 className="gap-4"
