@@ -141,14 +141,14 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
               </div>
             )}
 
-            {/* Tech Stack — Now with icons */}
-            {(project.techStack?.length ?? 0) > 0 && (
-              <div className="mt-4">
-                <TechStackPills
-                  techs={(project.techStack ?? []).map(({ techTag }) => techTag.name)}
-                />
-              </div>
-            )}
+           {/* Tech Stack — Now with icons */}
+             {(project.techStack?.length ?? 0) > 0 && (
+               <div className="mt-4">
+                 <TechStackPills
+                   techs={(project.techStack ?? []).map(({ techTag }: { techTag: import("@/generated/prisma/client").TechTag }) => techTag.name)}
+                 />
+               </div>
+             )}
 
             {/* Read More */}
             <div className="mt-4">

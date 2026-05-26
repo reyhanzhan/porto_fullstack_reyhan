@@ -9,6 +9,7 @@ import { ArrowLeft, ExternalLink, Github, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { TechStackGrid } from "@/components/ui/tech-icon";
 import type { Metadata } from "next";
+import type { Category, TechTag, ProjectMetric } from "@/generated/prisma/client";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,6 +25,8 @@ async function getProject(slug: string) {
     },
   });
 }
+
+type ProjectDetail = Awaited<ReturnType<typeof getProject>>;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -52,16 +55,16 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         Semua Proyek
       </Link>
 
-      {/* Header */}
-      <div>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {(project.categories ?? []).map(({ category }) => (
-            <Badge key={category.id} variant="secondary">
-              {category.name}
-            </Badge>
-          ))}
-          {project.featured && <Badge>Unggulan</Badge>}
-        </div>
+       {/* Header */}
+       <div>
+         <div className="flex flex-wrap gap-2 mb-4">
+           {(project.categories ?? []).map(({ category }: { category: import("@/generated/prisma/client").Category }) => (
+             <Badge key={category.id} variant="secondary">
+               {category.name}
+             </Badge>
+           ))}
+           {project.featured && <Badge>Unggulan</Badge>}
+         </div>
 
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {project.title}
@@ -134,9 +137,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 mb-3">
             Dampak Terukur
           </h2>
-          {(project.metrics?.length ?? 0) > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-              {project.metrics.map((metric) => (
+            {(project.metrics?.length ?? 0) > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+                {project.metrics.map((metric: ProjectMetric) => (
                 <Card key={metric.id} className="overflow-hidden">
                   <div className="h-1 bg-gradient-to-r from-emerald-400 to-emerald-600" />
                   <CardContent className="p-4 text-center">
@@ -168,12 +171,12 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </h2>
           <Card>
             <CardContent className="p-6">
-              <TechStackGrid
-                techs={(project.techStack ?? []).map(({ techTag }) => techTag.name)}
-                size="md"
-                showLabels={true}
-                className="gap-4"
-              />
+               <TechStackGrid
+                 techs={(project.techStack ?? []).map(({ techTag }: { techTag: TechTag }) => techTag.name)}
+                 size="md"
+                 showLabels={true}
+                 className="gap-4"
+               />
             </CardContent>
           </Card>
         </section>
