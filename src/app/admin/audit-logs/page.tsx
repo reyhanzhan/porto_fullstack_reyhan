@@ -13,6 +13,8 @@ async function getAuditLogs() {
   });
 }
 
+type AuditLogWithUser = Awaited<ReturnType<typeof getAuditLogs>>[number];
+
 const actionConfig: Record<
   string,
   { variant: "success" | "secondary" | "destructive" | "warning"; bg: string }
@@ -96,7 +98,7 @@ export default async function AuditLogsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800/50">
-                {logs.map((log) => {
+                {logs.map((log: AuditLogWithUser) => {
                   const config = actionConfig[log.action] || actionConfig.LOGOUT;
                   return (
                     <tr

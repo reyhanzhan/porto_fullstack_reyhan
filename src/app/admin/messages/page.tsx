@@ -13,6 +13,8 @@ async function getMessages() {
   });
 }
 
+type ContactMessage = Awaited<ReturnType<typeof getMessages>>[number];
+
 const statusConfig: Record<
   string,
   { variant: "success" | "secondary" | "warning" | "destructive"; dot: string }
@@ -25,7 +27,7 @@ const statusConfig: Record<
 
 export default async function AdminMessagesPage() {
   const messages = await getMessages();
-  const newCount = messages.filter((m) => m.status === "NEW").length;
+  const newCount = messages.filter((m: ContactMessage) => m.status === "NEW").length;
 
   return (
     <div className="animate-fade-in">
@@ -65,7 +67,7 @@ export default async function AdminMessagesPage() {
         </Card>
       ) : (
         <div className="space-y-3 stagger-children">
-          {messages.map((msg) => {
+          {messages.map((msg: ContactMessage) => {
             const config = statusConfig[msg.status] || statusConfig.NEW;
             return (
               <Card

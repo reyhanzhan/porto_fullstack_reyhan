@@ -28,6 +28,8 @@ async function getProjects() {
   });
 }
 
+type ProjectWithRelations = Awaited<ReturnType<typeof getProjects>>[number];
+
 export default async function ProjectsPage() {
   const projects = await getProjects();
 
@@ -44,12 +46,12 @@ export default async function ProjectsPage() {
         </p>
       </div>
 
-      {/* Projects Grid */}
+{/* Projects Grid */}
       <div className="mt-16 grid gap-8 stagger-children">
         {projects.length === 0 ? (
           <EmptyState />
         ) : (
-          projects.map((project) => (
+          projects.map((project: ProjectWithRelations) => (
             <ProjectCard key={project.id} project={project} />
           ))
         )}
@@ -57,8 +59,6 @@ export default async function ProjectsPage() {
     </div>
   );
 }
-
-type ProjectWithRelations = Awaited<ReturnType<typeof getProjects>>[number];
 
 function ProjectCard({ project }: { project: ProjectWithRelations }) {
   return (
@@ -128,7 +128,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
             {/* Impact Metrics */}
             {(project.metrics?.length ?? 0) > 0 && (
               <div className="mt-4 flex flex-wrap gap-3">
-                {project.metrics.map((metric) => (
+                {project.metrics.map((metric: ProjectWithRelations['metrics'][number]) => (
                   <div
                     key={metric.id}
                     className="rounded-lg bg-emerald-50 dark:bg-emerald-900/20 px-3 py-1.5 border border-emerald-100 dark:border-emerald-800/30"
@@ -145,7 +145,7 @@ function ProjectCard({ project }: { project: ProjectWithRelations }) {
              {(project.techStack?.length ?? 0) > 0 && (
                <div className="mt-4">
                  <TechStackPills
-                   techs={(project.techStack ?? []).map(({ techTag }: { techTag: import("@/generated/prisma/client").TechTag }) => techTag.name)}
+                   techs={(project.techStack ?? []).map(({ techTag }: { techTag: { name: string } }) => techTag.name)}
                  />
                </div>
              )}

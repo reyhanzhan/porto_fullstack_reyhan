@@ -20,9 +20,11 @@ async function getProjects() {
   });
 }
 
+type ProjectWithRelations = Awaited<ReturnType<typeof getProjects>>[number];
+
 export default async function AdminProjectsPage() {
   const projects = await getProjects();
-  const published = projects.filter((p) => p.published).length;
+  const published = projects.filter((p: ProjectWithRelations) => p.published).length;
 
   return (
     <div className="animate-fade-in">
@@ -90,7 +92,7 @@ export default async function AdminProjectsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800/50">
-                {projects.map((project) => (
+                {projects.map((project: ProjectWithRelations) => (
                   <tr
                     key={project.id}
                     className="hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors"
@@ -129,9 +131,9 @@ export default async function AdminProjectsPage() {
                     <td className="px-5 py-4 hidden xl:table-cell">
                       {project.techStack.length > 0 ? (
                         <TechStackPills
-                          techs={project.techStack
-                            .slice(0, 3)
-                            .map(({ techTag }) => techTag.name)}
+techs={project.techStack
+                             .slice(0, 3)
+                             .map(({ techTag }: { techTag: { name: string } }) => techTag.name)}
                         />
                       ) : (
                         <span className="text-xs text-zinc-400">—</span>

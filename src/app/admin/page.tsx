@@ -79,6 +79,9 @@ async function getDashboardData() {
   };
 }
 
+type DashboardData = Awaited<ReturnType<typeof getDashboardData>>;
+type AuditLogWithUser = DashboardData['recentLogs'][number];
+
 const actionColors: Record<string, string> = {
   CREATE: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
   UPDATE: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400",
@@ -224,7 +227,7 @@ export default async function AdminDashboard() {
               </div>
             ) : (
               <div className="space-y-3">
-                {data.recentLogs.map((log) => (
+                {data.recentLogs.map((log: AuditLogWithUser) => (
                   <div
                     key={log.id}
                     className="flex items-start gap-3 rounded-lg p-2 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
